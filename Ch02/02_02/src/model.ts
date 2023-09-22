@@ -5,19 +5,24 @@ let createDate: Date = new Date();
 let originalCost = 425;
 
 interface InventoryItem {
-    displayName: string;
-    inventoryType: string;
-    trackingNumber: string;
-    createDate: Date;
-    originalCost: number;
+  displayName: string;
+  inventoryType: string;
+  readonly trackingNumber: string;
+  createDate: Date;
+  originalCost?: number;
+
+  // addNote(note: string): string;
+  // OR
+  // Make property optional with `?`
+  addNote?: (note: string) => string;
 }
 
 function getInventoryItem(trackingNumber: string): InventoryItem {
-    return null;
+  return null;
 }
 
 function saveInventoryItem(item: InventoryItem) {
-
+  item.trackingNumber = "12345";
 }
 
 let inventoryItem = getInventoryItem(trackingNumber);
@@ -26,4 +31,9 @@ let updatedInventoryItem = inventoryItem;
 
 inventoryItem.createDate = new Date();
 
-saveInventoryItem(inventoryItem);
+saveInventoryItem({
+  displayName: "MacBook Pro 15 Retina",
+  inventoryType: "computer",
+  trackingNumber: "MBP123456",
+  createDate: new Date(),
+});
